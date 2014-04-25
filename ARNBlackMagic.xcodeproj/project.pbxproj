@@ -1,0 +1,432 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A5DCBB7190A08C9008CC862 /* ARNBlackMagicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DCBB6190A08C9008CC862 /* ARNBlackMagicObject.m */; };
+		7A5DCBB8190A12B2008CC862 /* NSObject+ARNBlackMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A72C8D51909297D00773554 /* NSObject+ARNBlackMagic.m */; };
+		7A72C8CF1909297D00773554 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A72C8CE1909297D00773554 /* Foundation.framework */; };
+		7A72C8D41909297D00773554 /* NSObject+ARNBlackMagic.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A72C8D31909297D00773554 /* NSObject+ARNBlackMagic.h */; };
+		7A72C8D61909297D00773554 /* NSObject+ARNBlackMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A72C8D51909297D00773554 /* NSObject+ARNBlackMagic.m */; };
+		7A72C8DD1909297D00773554 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A72C8DC1909297D00773554 /* XCTest.framework */; };
+		7A72C8DE1909297D00773554 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A72C8CE1909297D00773554 /* Foundation.framework */; };
+		7A72C8E01909297D00773554 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A72C8DF1909297D00773554 /* UIKit.framework */; };
+		7A72C8E31909297D00773554 /* libARNBlackMagic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A72C8CB1909297D00773554 /* libARNBlackMagic.a */; };
+		7A72C8E91909297E00773554 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7A72C8E71909297E00773554 /* InfoPlist.strings */; };
+		7A72C8EB1909297E00773554 /* ARNBlackMagicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A72C8EA1909297E00773554 /* ARNBlackMagicTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7A72C8E11909297D00773554 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A72C8C31909297D00773554 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A72C8CA1909297D00773554;
+			remoteInfo = ARNBlackMagic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7A72C8C91909297D00773554 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				7A72C8D41909297D00773554 /* NSObject+ARNBlackMagic.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7A5DCBB5190A08C9008CC862 /* ARNBlackMagicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARNBlackMagicObject.h; sourceTree = "<group>"; };
+		7A5DCBB6190A08C9008CC862 /* ARNBlackMagicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARNBlackMagicObject.m; sourceTree = "<group>"; };
+		7A72C8CB1909297D00773554 /* libARNBlackMagic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libARNBlackMagic.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A72C8CE1909297D00773554 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7A72C8D21909297D00773554 /* ARNBlackMagic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ARNBlackMagic-Prefix.pch"; path = "../ARNBlackMagic-Prefix.pch"; sourceTree = "<group>"; };
+		7A72C8D31909297D00773554 /* NSObject+ARNBlackMagic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ARNBlackMagic.h"; sourceTree = "<group>"; };
+		7A72C8D51909297D00773554 /* NSObject+ARNBlackMagic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ARNBlackMagic.m"; sourceTree = "<group>"; };
+		7A72C8DB1909297D00773554 /* ARNBlackMagicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARNBlackMagicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A72C8DC1909297D00773554 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7A72C8DF1909297D00773554 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		7A72C8E61909297E00773554 /* ARNBlackMagicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARNBlackMagicTests-Info.plist"; sourceTree = "<group>"; };
+		7A72C8E81909297E00773554 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7A72C8EA1909297E00773554 /* ARNBlackMagicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARNBlackMagicTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7A72C8C81909297D00773554 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A72C8CF1909297D00773554 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A72C8D81909297D00773554 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A72C8DD1909297D00773554 /* XCTest.framework in Frameworks */,
+				7A72C8E01909297D00773554 /* UIKit.framework in Frameworks */,
+				7A72C8DE1909297D00773554 /* Foundation.framework in Frameworks */,
+				7A72C8E31909297D00773554 /* libARNBlackMagic.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A72C8C21909297D00773554 = {
+			isa = PBXGroup;
+			children = (
+				7A72C8D01909297D00773554 /* ARNBlackMagic */,
+				7A72C8E41909297D00773554 /* ARNBlackMagicTests */,
+				7A72C8CD1909297D00773554 /* Frameworks */,
+				7A72C8CC1909297D00773554 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7A72C8CC1909297D00773554 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A72C8CB1909297D00773554 /* libARNBlackMagic.a */,
+				7A72C8DB1909297D00773554 /* ARNBlackMagicTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A72C8CD1909297D00773554 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A72C8CE1909297D00773554 /* Foundation.framework */,
+				7A72C8DC1909297D00773554 /* XCTest.framework */,
+				7A72C8DF1909297D00773554 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A72C8D01909297D00773554 /* ARNBlackMagic */ = {
+			isa = PBXGroup;
+			children = (
+				7A72C8D31909297D00773554 /* NSObject+ARNBlackMagic.h */,
+				7A72C8D51909297D00773554 /* NSObject+ARNBlackMagic.m */,
+				7A72C8D11909297D00773554 /* Supporting Files */,
+			);
+			path = ARNBlackMagic;
+			sourceTree = "<group>";
+		};
+		7A72C8D11909297D00773554 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7A72C8D21909297D00773554 /* ARNBlackMagic-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7A72C8E41909297D00773554 /* ARNBlackMagicTests */ = {
+			isa = PBXGroup;
+			children = (
+				7A72C8E51909297E00773554 /* Supporting Files */,
+				7A72C8EA1909297E00773554 /* ARNBlackMagicTests.m */,
+				7A5DCBB5190A08C9008CC862 /* ARNBlackMagicObject.h */,
+				7A5DCBB6190A08C9008CC862 /* ARNBlackMagicObject.m */,
+			);
+			path = ARNBlackMagicTests;
+			sourceTree = "<group>";
+		};
+		7A72C8E51909297E00773554 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7A72C8E61909297E00773554 /* ARNBlackMagicTests-Info.plist */,
+				7A72C8E71909297E00773554 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7A72C8CA1909297D00773554 /* ARNBlackMagic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A72C8EE1909297E00773554 /* Build configuration list for PBXNativeTarget "ARNBlackMagic" */;
+			buildPhases = (
+				7A72C8C71909297D00773554 /* Sources */,
+				7A72C8C81909297D00773554 /* Frameworks */,
+				7A72C8C91909297D00773554 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARNBlackMagic;
+			productName = ARNBlackMagic;
+			productReference = 7A72C8CB1909297D00773554 /* libARNBlackMagic.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7A72C8DA1909297D00773554 /* ARNBlackMagicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A72C8F11909297E00773554 /* Build configuration list for PBXNativeTarget "ARNBlackMagicTests" */;
+			buildPhases = (
+				7A72C8D71909297D00773554 /* Sources */,
+				7A72C8D81909297D00773554 /* Frameworks */,
+				7A72C8D91909297D00773554 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A72C8E21909297D00773554 /* PBXTargetDependency */,
+			);
+			name = ARNBlackMagicTests;
+			productName = ARNBlackMagicTests;
+			productReference = 7A72C8DB1909297D00773554 /* ARNBlackMagicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7A72C8C31909297D00773554 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Airin.;
+			};
+			buildConfigurationList = 7A72C8C61909297D00773554 /* Build configuration list for PBXProject "ARNBlackMagic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7A72C8C21909297D00773554;
+			productRefGroup = 7A72C8CC1909297D00773554 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7A72C8CA1909297D00773554 /* ARNBlackMagic */,
+				7A72C8DA1909297D00773554 /* ARNBlackMagicTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7A72C8D91909297D00773554 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A72C8E91909297E00773554 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A72C8C71909297D00773554 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A72C8D61909297D00773554 /* NSObject+ARNBlackMagic.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A72C8D71909297D00773554 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A5DCBB7190A08C9008CC862 /* ARNBlackMagicObject.m in Sources */,
+				7A72C8EB1909297E00773554 /* ARNBlackMagicTests.m in Sources */,
+				7A5DCBB8190A12B2008CC862 /* NSObject+ARNBlackMagic.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7A72C8E21909297D00773554 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A72C8CA1909297D00773554 /* ARNBlackMagic */;
+			targetProxy = 7A72C8E11909297D00773554 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7A72C8E71909297E00773554 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A72C8E81909297E00773554 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7A72C8EC1909297E00773554 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7A72C8ED1909297E00773554 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7A72C8EF1909297E00773554 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/ARNBlackMagic.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ARNBlackMagic-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7A72C8F01909297E00773554 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/ARNBlackMagic.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ARNBlackMagic-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7A72C8F21909297E00773554 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ARNBlackMagic-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ARNBlackMagicTests/ARNBlackMagicTests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7A72C8F31909297E00773554 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ARNBlackMagic-Prefix.pch";
+				INFOPLIST_FILE = "ARNBlackMagicTests/ARNBlackMagicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7A72C8C61909297D00773554 /* Build configuration list for PBXProject "ARNBlackMagic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A72C8EC1909297E00773554 /* Debug */,
+				7A72C8ED1909297E00773554 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A72C8EE1909297E00773554 /* Build configuration list for PBXNativeTarget "ARNBlackMagic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A72C8EF1909297E00773554 /* Debug */,
+				7A72C8F01909297E00773554 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A72C8F11909297E00773554 /* Build configuration list for PBXNativeTarget "ARNBlackMagicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A72C8F21909297E00773554 /* Debug */,
+				7A72C8F31909297E00773554 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7A72C8C31909297D00773554 /* Project object */;
+}
