@@ -1,13 +1,15 @@
 ARNBlackMagic
 =============
 
+[![Build Status](https://travis-ci.org/xxxAIRINxxx/ARNBlackMagic.svg?branch=master)](https://travis-ci.org/xxxAIRINxxx/ARNBlackMagic)
+
 Categories of objc / runtime API.
 
 
 Requirements
 ============
 
-ARNDeferred requires iOS 5.0 and above, and uses ARC.
+Requires iOS 5.0 or later, and uses ARC.
 
 
 Licensing
