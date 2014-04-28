@@ -138,5 +138,51 @@ static const char *getPropertyType(objc_property_t property) {
     method_exchangeImplementations(fromMethod, toMethod);
 }
 
+// is bug fixing...
+- (BOOL)arn_bmAddMethodWithSelectorName:(NSString *)selectorName impBlock:(ARN_BMAddMethodBlock)impBlock returnType:(const char *)returnType
+{
+    if (!selectorName || !impBlock) { return NO; }
+    
+    if (!returnType) {
+        returnType = @encode(typeof(void));
+    }
+    
+    SEL dynamicSelector = NSSelectorFromString(selectorName);
+    IMP dynamicImp = imp_implementationWithBlock(impBlock);
+    
+    IMP oldImp = class_getMethodImplementation([self class], dynamicSelector);
+    if (oldImp != NULL) {
+        imp_removeBlock(oldImp);
+    }
+    
+    return class_addMethod([self class], dynamicSelector, dynamicImp, returnType);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

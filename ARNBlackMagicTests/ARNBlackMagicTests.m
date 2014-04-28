@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "ARNBlackMagicObject.h"
 #import "NSObject+ARNBlackMagic.h"
+#import <objc/message.h>
 
 @interface ARNBlackMagicTests : XCTestCase
 
@@ -122,6 +123,32 @@
     
     XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"class A"], @"testSwizzClass error");
     XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
+}
+
+// is bug fixing...
+- (void)testAddMethod
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    NSString *testSelectorString = @"testSelectorWithString:";
+    XCTAssertTrue([objA arn_bmAddMethodWithSelectorName:testSelectorString impBlock:^id (id blockSelf, ...) {
+        va_list args;
+        va_start(args, blockSelf);
+        
+        ARNBlackMagicObject *selfObj = blockSelf;
+        
+        NSString *retrunString = nil;
+        while (selfObj) {
+            retrunString = va_arg(args, typeof (NSString *));
+        }
+        
+        va_end(args);
+        
+        return retrunString;
+    } returnType:@encode(NSString *)], @"testAddMerthod error");
+
+    NSString *testString = objc_msgSend(objA, NSSelectorFromString(testSelectorString), @"testOK");
+    XCTAssertTrue([testString isEqualToString:@"testOK"], @"testAddMerthod error");
 }
 
 @end
