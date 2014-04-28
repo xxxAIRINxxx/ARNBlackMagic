@@ -16,4 +16,10 @@
 @property (nonatomic, copy) NSString   *testString;
 @property (nonatomic, copy) NSArray    *testArray;
 
++ (NSString *)testClassMethodA;
++ (NSString *)testClassMethodB;
+
+- (NSString *)testInstanceMethodA;
+- (NSString *)testInstanceMethodB;
+
 @end

@@ -42,4 +42,86 @@
     XCTAssertTrue([dict[@"testArray"] isEqualToString:@"NSArray"], @"testProperties error");
 }
 
+- (void)testAssociate
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    NSString *testStringKey = @"testAssociateString";
+    NSString *testBoolKey = @"testAssociateBool";
+    
+    XCTAssertNil([[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey], @"testAssociate error");
+    
+    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testStringKey value:@"testA" policy:ARN_BWAssociationPolicyCopyNonatomic];
+    
+    XCTAssertTrue([[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey] isEqualToString:@"testA"], @"testAssociate error");
+    
+    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testStringKey value:@"testB" policy:ARN_BWAssociationPolicyCopyNonatomic];
+    
+    XCTAssertTrue([[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey] isEqualToString:@"testB"], @"testAssociate error");
+    
+    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testStringKey value:nil policy:ARN_BWAssociationPolicyAssign];
+    
+    XCTAssertNil([[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey], @"testAssociate error");
+    
+    
+    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testBoolKey value:@(YES) policy:ARN_BWAssociationPolicyAssign];
+    XCTAssertTrue([[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testBoolKey] boolValue], @"testAssociate error");
+    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testBoolKey value:@(NO) policy:ARN_BWAssociationPolicyAssign];
+    XCTAssertTrue(![[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testBoolKey] boolValue], @"testAssociate error");
+}
+
+- (void)testSwizzClass
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"class A"], @"testSwizzClass error");
+    XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
+    
+    [[objA class] arn_bmSwizzClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testClassMethodB)];
+    
+    XCTAssertThrows([[objA class] testClassMethodA], @"testSwizzClass error");
+    XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
+    
+    [[objA class] arn_bmSwizzClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testInstanceMethodA)];
+    
+    XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"instance A"], @"testSwizzClass error");
+    XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
+}
+
+- (void)testSwizzInstance
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    XCTAssertTrue([[objA testInstanceMethodA] isEqualToString:@"instance A"], @"testSwizzInstance error");
+    XCTAssertTrue([[objA testInstanceMethodB] isEqualToString:@"instance B"], @"testSwizzInstance error");
+    
+    [objA arn_bmSwizzInstanceMethodFromSelector:@selector(testInstanceMethodA) toSelector:@selector(testInstanceMethodB)];
+    
+    XCTAssertTrue([[objA testInstanceMethodA] isEqualToString:@"instance B"], @"testSwizzInstance error");
+    XCTAssertTrue([[objA testInstanceMethodB] isEqualToString:@"instance B"], @"testSwizzInstance error");
+    
+    [objA arn_bmSwizzInstanceMethodFromSelector:@selector(testInstanceMethodA) toSelector:@selector(testClassMethodA)];
+    
+    XCTAssertThrows([objA testInstanceMethodA], @"testSwizzInstance error");
+    XCTAssertTrue([[objA testInstanceMethodB] isEqualToString:@"instance B"], @"testSwizzInstance error");
+}
+
+- (void)testExchangeClass
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"class A"], @"testSwizzClass error");
+    XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
+    
+    [[objA class] arn_bmExchangeClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testClassMethodB)];
+    
+    XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"class B"], @"testSwizzClass error");
+    XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class A"], @"testSwizzClass error");
+    
+    [[objA class] arn_bmExchangeClassMethodFromSelector:@selector(testClassMethodB) toSelector:@selector(testClassMethodA)];
+    
+    XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"class A"], @"testSwizzClass error");
+    XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
+}
+
 @end

@@ -23,4 +23,24 @@
     return self;
 }
 
++ (NSString *)testClassMethodA
+{
+    return @"class A";
+}
+
++ (NSString *)testClassMethodB
+{
+    return @"class B";
+}
+
+- (NSString *)testInstanceMethodA
+{
+    return @"instance A";
+}
+
+- (NSString *)testInstanceMethodB
+{
+    return @"instance B";
+}
+
 @end

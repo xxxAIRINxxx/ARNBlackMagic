@@ -60,11 +60,40 @@ static const char *getPropertyType(objc_property_t property) {
     return dic;
 }
 
++ (id)arn_bmGetAssociatedObjectWithTarget:(id)target key:(NSString *)key
+{
+    if (!target || !key) { return nil; }
+    
+    const char *keyCString = [key cStringUsingEncoding:[NSString defaultCStringEncoding]];
+    return objc_getAssociatedObject(target, (const void *)keyCString);
+}
+
++ (void)arn_bmSetAssociatedObjectWithTarget:(id)target key:(NSString *)key value:(id)value policy:(ARN_BWAssociationPolicy)policy
+{
+    if (!target || !key) { return; }
+    
+    if (policy == ARN_BWAssociationPolicyAssign) {
+        policy = OBJC_ASSOCIATION_ASSIGN;
+    } else if (policy == ARN_BWAssociationPolicyRetainNonatomic) {
+        policy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
+    } else if (policy == ARN_BWAssociationPolicyCopyNonatomic) {
+        policy = OBJC_ASSOCIATION_COPY_NONATOMIC;
+    } else if (policy == ARN_BWAssociationPolicyRetain) {
+        policy = OBJC_ASSOCIATION_RETAIN;
+    } else if (policy == ARN_BWAssociationPolicyCopy) {
+        policy = OBJC_ASSOCIATION_COPY;
+    } else {
+        return;
+    }
+    const char *keyCString = [key cStringUsingEncoding:[NSString defaultCStringEncoding]];
+    objc_setAssociatedObject(target, (const void *)keyCString, value, policy);
+}
+
 - (void)arn_bmSwizzClassMethodFromSelector:(SEL)fromSelector toSelector:(SEL)toSelector
 {
     if (!fromSelector || !toSelector) { return; }
     
-    Method fromMethod = class_getInstanceMethod([self class], fromSelector);
+    Method fromMethod = class_getClassMethod([self class], fromSelector);
     IMP toImp = class_getMethodImplementation([self class], toSelector);
     
     if (fromMethod == NULL || toImp == NULL) { return; }
@@ -108,36 +137,6 @@ static const char *getPropertyType(objc_property_t property) {
     
     method_exchangeImplementations(fromMethod, toMethod);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @end

@@ -7,11 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
+
+typedef NS_ENUM (uintptr_t, ARN_BWAssociationPolicy) {
+    ARN_BWAssociationPolicyAssign = 0,
+    ARN_BWAssociationPolicyRetainNonatomic,
+    ARN_BWAssociationPolicyCopyNonatomic,
+    ARN_BWAssociationPolicyRetain,
+    ARN_BWAssociationPolicyCopy
+};
 
 @interface NSObject (ARNBlackMagic)
 
 // @see http://stackoverflow.com/questions/754824/get-an-object-properties-list-in-objective-c
 + (NSDictionary *)arn_bmProperties;
+
+// Associate
++ (id)arn_bmGetAssociatedObjectWithTarget:(id)target key:(NSString *)key;
++ (void)arn_bmSetAssociatedObjectWithTarget:(id)target key:(NSString *)key value:(id)value policy:(ARN_BWAssociationPolicy)policy;
 
 // Swizz 
 - (void)arn_bmSwizzClassMethodFromSelector:(SEL)fromSelector toSelector:(SEL)toSelector;
