@@ -39,6 +39,9 @@ typedef NS_ENUM (uintptr_t, ARN_BWAssociationPolicy) {
 - (BOOL)arn_bmAddClassMethodWithSelectorName:(NSString *)selectorName impBlock:(id)impBlock;
 - (BOOL)arn_bmAddInstanceMethodWithSelectorName:(NSString *)selectorName impBlock:(id)impBlock;
 
+// not fixed...
+- (BOOL)arn_bmAppendBlockForSelector:(SEL)selector appendBlock:(id)appendBlock needCallOriginalMethod:(BOOL)needCallOriginalMethod;
+
 // Debug
 + (void)arn_bmLoggingAllMethodWithTargetClass:(Class)targetClass;
 

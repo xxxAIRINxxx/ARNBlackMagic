@@ -268,19 +268,22 @@ const char *ARNBlockGetObjCTypes(id _block)
     
     Class fromClass;
     Class toClass;
+    Method fromMethod;
+    Method toMethod;
     if (fromClassMethod) {
         fromClass = object_getClass([self class]);
+        fromMethod = class_getClassMethod(fromClass, fromSelector);
     } else {
         fromClass = [self class];
+        fromMethod = class_getInstanceMethod(fromClass, fromSelector);
     }
     if (toClassMethod) {
         toClass = object_getClass([self class]);
+        toMethod   = class_getClassMethod(toClass, toSelector);
     } else {
         toClass = [self class];
+        toMethod   = class_getInstanceMethod(toClass, toSelector);
     }
-    
-    Method fromMethod = class_getInstanceMethod(fromClass, fromSelector);
-    Method toMethod   = class_getInstanceMethod(toClass, toSelector);
     
     if (fromMethod == NULL || toMethod == NULL) { return NO; }
     
@@ -313,6 +316,18 @@ const char *ARNBlockGetObjCTypes(id _block)
     }
     
     class_addMethod(class, dynamicSelector, imp_implementationWithBlock(impBlock), [self typeStringWithBlock:impBlock]);
+    
+    return YES;
+}
+
+// not fixed...
+- (BOOL)arn_bmAppendBlockForSelector:(SEL)selector appendBlock:(id)appendBlock needCallOriginalMethod:(BOOL)needCallOriginalMethod
+{
+    if (!selector || !appendBlock) { return NO; }
+    
+    Method fromMethod = class_getInstanceMethod([self class], selector);
+    
+    method_setImplementation(fromMethod, imp_implementationWithBlock(appendBlock));
     
     return YES;
 }

@@ -228,4 +228,23 @@ static const char *testBoolKey   = "testAssociateBool";
     XCTAssertTrue([testString2 isEqualToString:@"replaceOK2"], @"testAddMerthod error");
 }
 
+- (void)testAppending
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    [objA arn_bmAppendBlockForSelector:@selector(testAddingWithString:number:integerValue:) appendBlock:^void (id selfObj, NSString *aString, NSNumber *number, NSInteger integerValue) {
+        NSLog(@"call Block testAddingWithString");
+    } needCallOriginalMethod:NO];
+    
+    [objA testAddingWithString:@"str" number:@1 integerValue:2];
+    
+}
+
+- (void)testAppending2
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    [objA testAddingWithString:@"str" number:@3 integerValue:4];
+}
+
 @end

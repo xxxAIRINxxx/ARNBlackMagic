@@ -87,4 +87,9 @@
     return [NSString stringWithFormat:@"%@%@", text, nextText];
 }
 
+- (void)testAddingWithString:(NSString *)aString number:(NSNumber *)number integerValue:(NSInteger)integerValue
+{
+    NSLog(@"call Origin testAddingWithString");
+}
+
 @end

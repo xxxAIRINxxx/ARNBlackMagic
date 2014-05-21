@@ -34,5 +34,7 @@
 + (NSString *)testSnedClassMessage2:(NSString *)text;
 + (NSString *)testSnedClassMessage3:(NSString *)text nextText:(NSString *)nextText;
 
+- (void)testAddingWithString:(NSString *)aString number:(NSNumber *)number integerValue:(NSInteger)integerValue;
+
 
 @end
