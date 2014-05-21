@@ -19,7 +19,7 @@
 - (instancetype)init
 {
     if (!(self = [super init])) { return nil; }
-    
+
     return self;
 }
 
@@ -30,7 +30,6 @@
 
 - (void)testBlockInstanceMethod
 {
-    
 }
 
 + (NSString *)testClassMethodA
