@@ -9,7 +9,9 @@
 #import <XCTest/XCTest.h>
 #import "ARNBlackMagicObject.h"
 #import "NSObject+ARNBlackMagic.h"
-#import <objc/message.h>
+
+static const char *testStringKey = "testAssociateString";
+static const char *testBoolKey = "testAssociateBool";
 
 @interface ARNBlackMagicTests : XCTestCase
 
@@ -43,32 +45,65 @@
     XCTAssertTrue([dict[@"testArray"] isEqualToString:@"NSArray"], @"testProperties error");
 }
 
+- (void)testMethodCtypesWithReturnType
+{
+    XCTAssertTrue(strcmp([[self class] arn_bmMethodCtypesWithReturnType:nil parameter:nil] ,"v0@0") == 0, @"testMethodCtypesWithReturnType error");
+    XCTAssertTrue(strcmp([[self class] arn_bmMethodCtypesWithReturnType:@encode(BOOL) parameter:nil] ,"B0@0") == 0, @"testMethodCtypesWithReturnType error");
+    XCTAssertTrue(strcmp([[self class] arn_bmMethodCtypesWithReturnType:@encode(int) parameter:nil] ,"i0@0") == 0, @"testMethodCtypesWithReturnType error");
+    XCTAssertTrue(strcmp([[self class] arn_bmMethodCtypesWithReturnType:@encode(id) parameter:@encode(Rect), nil], "@0@0:{Rect=ssss}0") == 0, @"testMethodCtypesWithReturnType error");
+    XCTAssertTrue(strcmp([[self class] arn_bmMethodCtypesWithReturnType:@encode(NSMutableArray *) parameter:@encode(NSNumber *), @encode(NSInteger), nil] ,"@0@0:@0:q0") == 0, @"testMethodCtypesWithReturnType error");
+    XCTAssertTrue(strcmp([[self class] arn_bmMethodCtypesWithReturnType:@encode(NSString *) parameter:@encode(NSObject *), @encode(int), @encode(float), nil], "@0@0:@0:i0:f0") == 0, @"testMethodCtypesWithReturnType error");
+}
+
+- (void)testSendMessage
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    XCTAssertNil(objA.testString, @"testSendMessage error");
+    
+    [[self class] arn_bmSendMessageWithTarget:objA selectorName:@"testSnedMessage1" parameter: nil];
+    
+    XCTAssertTrue([objA.testString isEqualToString:@"OK"], @"testSendMessage error");
+    
+    XCTAssertTrue([[[self class] arn_bmSendMessageWithTarget:objA selectorName:@"testSnedMessage2" parameter: nil] isEqualToString:@"OK"], @"testSendMessage error");
+    
+    NSString *str1 = [[self class] arn_bmSendMessageWithTarget:objA selectorName:@"testSnedMessage3:" parameter:@"OK", nil];
+    XCTAssertTrue([str1 isEqualToString:@"OK"], @"testSendMessage error");
+    
+    NSString *str2 = [[self class] arn_bmSendMessageWithTarget:objA selectorName:@"testSnedMessage4:nextText:" parameter:@"OK", @"OK", nil];
+    XCTAssertTrue([str2 isEqualToString:@"OKOK"], @"testSendMessage error");
+    
+    XCTAssertTrue([[[self class] arn_bmSendMessageWithTarget:[ARNBlackMagicObject class] selectorName:@"testSnedClassMessage1" parameter: nil] isEqualToString:@"OK"], @"testSendMessage error");
+    
+    NSString *str3 = [[self class] arn_bmSendMessageWithTarget:[ARNBlackMagicObject class] selectorName:@"testSnedClassMessage2:" parameter:@"OK", nil];
+    XCTAssertTrue([str3 isEqualToString:@"OK"], @"testSendMessage error");
+    
+    NSString *str4 = [[self class] arn_bmSendMessageWithTarget:[ARNBlackMagicObject class] selectorName:@"testSnedClassMessage3:nextText:" parameter:@"OK", @"OK", nil];
+    XCTAssertTrue([str4 isEqualToString:@"OKOK"], @"testSendMessage error");
+}
+
 - (void)testAssociate
 {
     ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
     
-    NSString *testStringKey = @"testAssociateString";
-    NSString *testBoolKey = @"testAssociateBool";
+    XCTAssertNil([objA arn_bmAssociatedObjectWithKey:&testStringKey], @"testAssociate error");
     
-    XCTAssertNil([[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey], @"testAssociate error");
+    [objA arn_bmSetAssociatedObjectWithKey:&testStringKey value:@"testA" policy:ARN_BWAssociationPolicyCopyNonatomic];
     
-    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testStringKey value:@"testA" policy:ARN_BWAssociationPolicyCopyNonatomic];
+    XCTAssertTrue([[objA arn_bmAssociatedObjectWithKey:&testStringKey] isEqualToString:@"testA"], @"testAssociate error");
     
-    XCTAssertTrue([[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey] isEqualToString:@"testA"], @"testAssociate error");
+    [objA arn_bmSetAssociatedObjectWithKey:&testStringKey value:@"testB" policy:ARN_BWAssociationPolicyCopyNonatomic];
     
-    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testStringKey value:@"testB" policy:ARN_BWAssociationPolicyCopyNonatomic];
+    XCTAssertTrue([[objA arn_bmAssociatedObjectWithKey:&testStringKey] isEqualToString:@"testB"], @"testAssociate error");
     
-    XCTAssertTrue([[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey] isEqualToString:@"testB"], @"testAssociate error");
+    [objA arn_bmSetAssociatedObjectWithKey:&testStringKey value:nil policy:ARN_BWAssociationPolicyAssign];
     
-    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testStringKey value:nil policy:ARN_BWAssociationPolicyAssign];
+    XCTAssertNil([objA arn_bmAssociatedObjectWithKey:&testStringKey], @"testAssociate error");
     
-    XCTAssertNil([[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testStringKey], @"testAssociate error");
-    
-    
-    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testBoolKey value:@(YES) policy:ARN_BWAssociationPolicyAssign];
-    XCTAssertTrue([[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testBoolKey] boolValue], @"testAssociate error");
-    [[objA class] arn_bmSetAssociatedObjectWithTarget:objA key:testBoolKey value:@(NO) policy:ARN_BWAssociationPolicyAssign];
-    XCTAssertTrue(![[[objA class] arn_bmGetAssociatedObjectWithTarget:objA key:testBoolKey] boolValue], @"testAssociate error");
+    [objA arn_bmSetAssociatedObjectWithKey:&testBoolKey value:@(YES) policy:ARN_BWAssociationPolicyAssign];
+    XCTAssertTrue([[objA arn_bmAssociatedObjectWithKey:&testBoolKey] boolValue], @"testAssociate error");
+    [objA arn_bmSetAssociatedObjectWithKey:&testBoolKey value:@(NO) policy:ARN_BWAssociationPolicyAssign];
+    XCTAssertTrue(![[objA arn_bmAssociatedObjectWithKey:&testBoolKey] boolValue], @"testAssociate error");
 }
 
 - (void)testSwizzClass
@@ -78,12 +113,12 @@
     XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"class A"], @"testSwizzClass error");
     XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
     
-    [[objA class] arn_bmSwizzClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testClassMethodB)];
+    [objA arn_bmSwizzClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testClassMethodB)];
     
     XCTAssertThrows([[objA class] testClassMethodA], @"testSwizzClass error");
     XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
     
-    [[objA class] arn_bmSwizzClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testInstanceMethodA)];
+    [objA arn_bmSwizzClassMethodFromSelector:@selector(testClassMethodA) toSelector:@selector(testInstanceMethodA)];
     
     XCTAssertTrue([[[objA class] testClassMethodA] isEqualToString:@"instance A"], @"testSwizzClass error");
     XCTAssertTrue([[[objA class] testClassMethodB] isEqualToString:@"class B"], @"testSwizzClass error");
@@ -107,6 +142,47 @@
     XCTAssertTrue([[objA testInstanceMethodB] isEqualToString:@"instance B"], @"testSwizzInstance error");
 }
 
+- (void)testSwizzClassBlock
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    [[objA class] arn_bmLoggingAllMethodWithTargetClass:[objA class]];
+    
+    [objA arn_bmSwizzClassMethodWithSelector:@selector(testBlockClassMethod) impBlock:^id (id set, NSString *str) {
+        return str;
+    }];
+    
+    [[objA class] arn_bmLoggingAllMethodWithTargetClass:[objA class]];
+    
+    NSString *str1 = [[objA class] arn_bmSendMessageWithTarget:[objA class] selectorName:@"testBlockClassMethod" parameter:@"classTest1",nil];
+    XCTAssertTrue([str1  isEqualToString:@"classTest1"], @"testSwizzClassBlock error");
+    
+    [objA arn_bmSwizzClassMethodWithSelector:@selector(testBlockClassMethod) impBlock:^id (id set, NSString *str, NSNumber *number) {
+        return [NSString stringWithFormat:@"%@%d", str, number.intValue];
+    }];
+    
+    [[objA class] arn_bmLoggingAllMethodWithTargetClass:[objA class]];
+    
+//     str1 = [[objA class] arn_bmSendMessageWithTarget:[objA class] selectorName:@"testBlockClassMethod" parameter:@"classTest",@2, nil];
+//    XCTAssertTrue([str1  isEqualToString:@"classTest2"], @"testSwizzClassBlock error");
+}
+
+- (void)testSwizzInstanceBlock
+{
+    ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
+    
+    [[objA class] arn_bmLoggingAllMethodWithTargetClass:[objA class]];
+    
+    [objA arn_bmSwizzInstanceMethodWithSelector:@selector(testBlockInstanceMethod) impBlock:^id (id set, NSString *str) {
+        return str;
+    }];
+    
+    [[objA class] arn_bmLoggingAllMethodWithTargetClass:[objA class]];
+    
+    NSString *str1 = [[objA class] arn_bmSendMessageWithTarget:objA selectorName:@"testBlockInstanceMethod" parameter:@"instanceTest1",nil];
+    XCTAssertTrue([str1  isEqualToString:@"instanceTest1"], @"testSwizzInstanceBlock error");
+}
+
 - (void)testExchangeClass
 {
     ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
@@ -126,28 +202,17 @@
 }
 
 // is bug fixing...
-- (void)testAddMethod
+- (void)testAddClassMethod
 {
     ARNBlackMagicObject *objA = ARNBlackMagicObject.new;
     
     NSString *testSelectorString = @"testSelectorWithString:";
-    XCTAssertTrue([objA arn_bmAddMethodWithSelectorName:testSelectorString impBlock:^id (id blockSelf, ...) {
-        va_list args;
-        va_start(args, blockSelf);
-        
-        ARNBlackMagicObject *selfObj = blockSelf;
-        
-        NSString *retrunString = nil;
-        while (selfObj) {
-            retrunString = va_arg(args, typeof (NSString *));
-        }
-        
-        va_end(args);
-        
-        return retrunString;
+    XCTAssertTrue([objA arn_bmAddClassMethodWithSelectorName:testSelectorString impBlock:^id (NSString *aString) {
+        return aString;
     } returnType:@encode(NSString *)], @"testAddMerthod error");
 
-    NSString *testString = objc_msgSend(objA, NSSelectorFromString(testSelectorString), @"testOK");
+    return;
+    NSString *testString = [[self class] arn_bmSendMessageWithTarget:[ARNBlackMagicObject class] selectorName:testSelectorString parameter:@"testOK", nil];
     XCTAssertTrue([testString isEqualToString:@"testOK"], @"testAddMerthod error");
 }
 

@@ -16,10 +16,23 @@
 @property (nonatomic, copy) NSString   *testString;
 @property (nonatomic, copy) NSArray    *testArray;
 
++ (void)testBlockClassMethod;
+- (void)testBlockInstanceMethod;
+
 + (NSString *)testClassMethodA;
 + (NSString *)testClassMethodB;
 
 - (NSString *)testInstanceMethodA;
 - (NSString *)testInstanceMethodB;
+
+- (void)testSnedMessage1;
+- (NSString *)testSnedMessage2;
+- (NSString *)testSnedMessage3:(NSString *)text;
+- (NSString *)testSnedMessage4:(NSString *)text nextText:(NSString *)nextText;
+
++ (NSString *)testSnedClassMessage1;
++ (NSString *)testSnedClassMessage2:(NSString *)text;
++ (NSString *)testSnedClassMessage3:(NSString *)text nextText:(NSString *)nextText;
+
 
 @end

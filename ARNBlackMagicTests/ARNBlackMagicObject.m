@@ -23,6 +23,16 @@
     return self;
 }
 
++ (void)testBlockClassMethod
+{
+    
+}
+
+- (void)testBlockInstanceMethod
+{
+    
+}
+
 + (NSString *)testClassMethodA
 {
     return @"class A";
@@ -41,6 +51,41 @@
 - (NSString *)testInstanceMethodB
 {
     return @"instance B";
+}
+
+- (void)testSnedMessage1
+{
+    self.testString = @"OK";
+}
+
+- (NSString *)testSnedMessage2
+{
+    return @"OK";
+}
+
+- (NSString *)testSnedMessage3:(NSString *)text
+{
+    return text;
+}
+
+- (NSString *)testSnedMessage4:(NSString *)text nextText:(NSString *)nextText
+{
+    return [NSString stringWithFormat:@"%@%@", text, nextText];
+}
+
++ (NSString *)testSnedClassMessage1
+{
+    return @"OK";
+}
+
++ (NSString *)testSnedClassMessage2:(NSString *)text
+{
+    return text;
+}
+
++ (NSString *)testSnedClassMessage3:(NSString *)text nextText:(NSString *)nextText
+{
+    return [NSString stringWithFormat:@"%@%@", text, nextText];
 }
 
 @end
